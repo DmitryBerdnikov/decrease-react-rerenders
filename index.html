@@ -49,6 +49,14 @@
                 max-width: 600px;
                 left: 50%;
             }
+
+            .link-wrapper {
+                margin-top: -33px !important;
+            }
+
+            .link {
+                font-size: 16px;
+            }
         </style>
     </head>
     <body class="shower list">
@@ -85,6 +93,7 @@
 
         <section class="slide">
             <h2>Убираем общее состояние</h2>
+            <p class="link-wrapper"><a class="link" target="_blank" href="https://codesandbox.io/s/1-remove-common-state-re4rg">Пример</a></p>
             <pre style="font-size: 18px">
             <code>const App = () =&gt; {</code>
             <code>  const [counter, setCounter] = useState(0)</code>
@@ -100,7 +109,7 @@
 
         <section class="slide">
             <h2>Убираем общее состояние</h2>
-            <pre style="font-size: 18px">
+            <pre style="font-size: 16px">
             <code>const Counter = () =&gt; {</code>
             <code>  const [count, setCounter] = useState(0)</code>
             <code>  return &lt;button onClick={increaseCounter}&gt;{counter}&lt;/button&gt;</code>
@@ -117,6 +126,7 @@
 
         <section class="slide">
             <h2>Используем children</h2>
+            <p class="link-wrapper"><a class="link" target="_blank" href="https://codesandbox.io/s/2-use-children-rbo08">Пример</a></p>
             <pre style="font-size: 18px">
             <code>const App = () =&gt; {</code>
             <code>  const [colSize, setColSize] = useState(6)</code>
@@ -147,18 +157,32 @@
         </section>
 
         <section class="slide">
+            <h2>memo</h2>
+            <h3>Не забываем использовать useCallback, если передаётся функция как пропс</h3>
+            <p class="link-wrapper"><a class="link" target="_blank" href="https://codesandbox.io/s/3-memo-erjf0">Пример</a></p>
+            <pre style="font-size: 18px">
+            <code>const memoizedComponent = memo(Component, areEqual)</code>
+            <code>&nbsp;</code>
+            <code>function areEqual = (prevProps, nextProps) {</code>
+            <code>  if (prevProps.name === nextProps.name) return true</code>
+            <code>}</code>
+        </pre>
+        </section>
+
+        <section class="slide">
             <h2 class="shout shout-custom" style="font-size: 50px;">Оптимизация не поможет, <br>если компонент размонтируется</h2>
         </section>
 
         <section class="slide">
             <h2>Компонент размонтируется:</h2>
             <h3>Если изменится тип родителя</h3>
+            <p class="link-wrapper"><a class="link" target="_blank" href="https://codesandbox.io/s/4-changeable-parent-wb4fb">Пример</a></p>
             <pre style="font-size: 18px">
-            <code>const Wrapper = isActive ? React.Fragment : React.div</code>
+            <code>const Wrapper = isActive ? ActiveWrapper : DefaultWrapper</code>
             <code>&nbsp;</code>
             <code class="mark">&lt;Wrapper&gt;</code>
             <code>  &lt;Child /&gt;</code>
-            <code class="mark">&lt;Wrapper/&gt;</code>
+            <code class="mark">&lt;/Wrapper&gt;</code>
         </pre>
         </section>
 
@@ -167,6 +191,7 @@
             <h3>
                 Если компонент переместится в родителе и не имеет пропса key
             </h3>
+            <p class="link-wrapper"><a class="link" target="_blank" href="https://codesandbox.io/s/5-component-change-place-9qmup">Пример</a></p>
             <pre style="font-size: 18px">
             <code>&lt;&gt;</code>
             <code>  &lt;Child /&gt;</code>
@@ -182,6 +207,7 @@
         <section class="slide">
             <h2>Компонент размонтируется:</h2>
             <h3>Если изменится пропс key</h3>
+            <p class="link-wrapper"><a class="link" target="_blank" href="https://codesandbox.io/s/6-changeable-key-8in7e">Пример</a></p>
             <pre style="font-size: 18px">
             <code>&lt;&gt;</code>
             <code>  &lt;Child key="id" /&gt;</code>
@@ -198,9 +224,6 @@
                 Полезные ссылки
             </h2>
             <ul>
-                <li>
-                    <a href="https://reactjs.org/docs/reconciliation.html">React Reconciliation</a>
-                </li>
                 <li>
                     <a href="https://www.youtube.com/watch?v=NPXJnKytER4">Айти Синяк: React Reconciliation</a>
                 </li>
